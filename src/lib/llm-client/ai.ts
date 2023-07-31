@@ -30,7 +30,7 @@ const aiTaskResponse = async (messages: any) => {
     const response = await taskPrompt.generate(ai, currPrompt);
     let aiResponse = response.value();
     console.log('aiResponse', aiResponse);
-    return { content: aiResponse };
+    return aiResponse;
   } catch (err: any) {
     console.log(err.message);
     return err.message;  

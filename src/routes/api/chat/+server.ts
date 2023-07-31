@@ -22,15 +22,18 @@ export const POST: any = async ({ request }) => {
     if (latestMessage && latestMessage.role === 'user') {
       // Forward chat history to the AI
       let result = await aiTaskResponse(requestData.messages)
-      console.log("AI :", result)
+      console.log("AI :", result.content)
 
-      // Send response to user
-      console.log("Responded to POST request")
-      return new Response(JSON.stringify({ role: 'assistant', content: result }), {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      });``
+      // Return a response to the user
+      if (result.content) {
+        return new Response(JSON.stringify({ role: 'assistant', content: result.content }), {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });``
+      }
+      // Throw an error if the AI response is empty
+      throw new Error('AI response is empty');
     }
 
     // Return a response to the user
