@@ -75,33 +75,11 @@ const db = new sqlite3.Database('./src/lib/sqlite3/ecommerce.db', (err: any) => 
 });
 
 // Setup functions
-async function getOrdersByCustomerId(customerId: number): Promise<Order[]> {
+async function getOrdersByCustomerId(customer: {customerId: number}): Promise<Order[]> {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT * FROM Orders WHERE customer_id = ?';
-    console.log('Connected to ecommerce database')
-    db.all(sql, [customerId], (err, rows) => {
-      if (err) {
-        reject(err);
-      } else {
-        // Validate the data
-        if (!validateOrders(rows)) {
-          // If the data is invalid, reject the promise with the validation errors
-          console.error('Validation errors:', validateOrders.errors);
-          reject(validateOrders.errors);
-        } else {
-          resolve(rows as Order[]);
-        }
-      }
-    });    
-  });
-}
-
-async function getOrderById(orderId: number): Promise<Order[]> {
-  return new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM Orders WHERE order_id = ?';
-
-    console.log('Connected to ecommerce database')
-    db.all(sql, [orderId], (err, rows) => {
+    console.log(`Lookup => getOrdersByCustomerId(${customer.customerId})`)
+    db.all(sql, [customer.customerId], (err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -118,11 +96,51 @@ async function getOrderById(orderId: number): Promise<Order[]> {
   });
 }
 
-async function getProducts(query: string): Promise<Product[]> {
+async function getOrderById(order: {orderId: number}): Promise<Order[]> {
+  return new Promise((resolve, reject) => {
+    const sql = 'SELECT * FROM Orders WHERE order_id = ?';
+    console.log(`Lookup => getOrderById(${order.orderId})`)
+    db.all(sql, [order.orderId], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        // Validate the data
+        if (!validateOrders(rows)) {
+          // If the data is invalid, reject the promise with the validation errors
+          console.error('Validation errors:', validateOrders.errors);
+          reject(validateOrders.errors);
+        } else {
+          resolve(rows as Order[]);
+        }
+      }
+    });
+  });
+}
+
+async function searchProducts(search: {query: string}): Promise<Product[]> {
+  return new Promise((resolve, reject) => {
+    const sql = 'SELECT * FROM Products WHERE product_name LIKE ?';
+    console.log(`Searching products => ${search.query}`)
+    db.all(sql, [`%${search.query}%`], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        // Validate the data
+        if (!validateProducts(rows)) {
+          // If the data is invalid, reject the promise with the validation errors
+          reject(validateProducts.errors);
+        } else {
+          resolve(rows as Product[]);
+        }
+      }
+    });
+  });
+}
+
+async function getAllProducts(query: string): Promise<Product[]> {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT * FROM Products';
-    console.log('Connected to ecommerce database')
-    db.on('open', () => { console.log('Connected to ecommerce database') })
+    console.log('Getting a list of products')
     db.all(sql, [], (err, rows) => {
       if (err) {
         reject(err);
@@ -156,6 +174,7 @@ async function createNewOrder({customerId, productId, quantity, unitPrice}: NewO
 export {
   getOrdersByCustomerId, 
   getOrderById, 
-  getProducts,
+  searchProducts,
+  getAllProducts,
   createNewOrder
 };
