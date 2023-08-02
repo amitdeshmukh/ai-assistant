@@ -27,18 +27,6 @@ export const taskFunctions = [
     func: getOrderById,
   },
   {
-    name: 'searchProducts',
-    description: 'Given some information, finds a matching product and returns its details, price and available stock.',
-    inputSchema: {
-      type: 'object',
-      description: 'The search criteria',
-      properties: {
-        query: { type: 'string' },
-      }
-    },
-    func: searchProducts,
-  },
-  {
     name: 'getAllProducts',
     description: 'Returns a list of all products.',
     inputSchema: {
