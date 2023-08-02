@@ -43,7 +43,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@dosco/llm-client": "^4.0.9",
+		"@dosco/llm-client": "^4.0.10",
 		"dotenv": "^16.3.1",
 		"sqlite-async": "^1.2.0"
 	}
