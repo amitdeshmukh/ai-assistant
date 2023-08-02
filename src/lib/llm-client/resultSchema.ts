@@ -3,9 +3,9 @@
 export const messageResultSchema: any = {
   type: 'object',
   properties: {
-    content: {
-      type: 'string',
-      description: 'response message for the user',
+    "isTask": {
+      "type": "boolean",
+      "description": "indicates if this is a task or not",
     }
   },
 };
@@ -13,9 +13,9 @@ export const messageResultSchema: any = {
 export const taskResultSchema: any = {
   type: 'object',
   properties: {
-    content: {
-      type: 'string',
-      description: 'response message for the user',
+    "content": {
+      "type": "string",
+      "description": "a polite response for the users query"
     }
   },
 };

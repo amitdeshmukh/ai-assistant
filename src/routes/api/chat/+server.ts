@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { Config } from '@sveltejs/adapter-vercel';
-import { aiTaskResponse } from '$lib/llm-client/ai';
+import { aiMessageResponse } from '$lib/llm-client/ai';
 
 export const config: Config = {
   runtime: 'edge'
@@ -21,8 +21,8 @@ export const POST: any = async ({ request }) => {
     // Do something with the request data
     if (latestMessage && latestMessage.role === 'user') {
       // Forward chat history to the AI
-      let result = await aiTaskResponse(requestData.messages)
-      console.log("AI :", result.content)
+      let result = await aiMessageResponse(requestData.messages)
+      console.log({role: "assistant", content: result.content})
 
       // Return a response to the user
       if (result.content) {

@@ -1,13 +1,12 @@
-import { getOrderById, getOrdersByCustomerId, searchProducts, getAllProducts, createNewOrder } from '$lib/sqlite3/db';
-import { askQuestion } from '$lib/utils/misc';
+import { getOrderById, getOrdersByCustomerId, getAllProducts, createNewOrder } from '$lib/sqlite3/db';
 
 export const taskFunctions = [
   {
     name: 'getOrdersByCustomerId',
-    description: 'Get information about orders placed by a customer based on their customerId',
+    description: 'Get information about orders placed by a user based on their customerId',
     inputSchema: {
       type: 'object',
-      description: 'The customerId of the customer',
+      description: 'The customerId of the user',
       properties: {
         customerId: { type: 'number' },
       }
@@ -53,17 +52,5 @@ export const taskFunctions = [
       required: ['customerId', 'productId', 'quantity', 'unitPrice']
     },
     func: createNewOrder,
-  }
-];
-
-export const messageFunctions = [
-    {
-    name: 'askQuestion',
-    description: 'Ask a question to the customer or clarify something.',
-    inputSchema: {
-      type: 'string',
-      description: 'The question to ask',
-    },
-    func: askQuestion,
   }
 ];
