@@ -1,4 +1,4 @@
-import { getOrderById, getOrdersByCustomerId, getAllProducts, createNewOrder } from '$lib/sqlite3/db';
+import { getOrderById, getOrdersByCustomerId, getProducts, createNewOrder } from '$lib/sqlite3/db';
 
 export const taskFunctions = [
   {
@@ -26,8 +26,8 @@ export const taskFunctions = [
     func: getOrderById,
   },
   {
-    name: 'getAllProducts',
-    description: 'Returns a list of all products.',
+    name: 'getProducts',
+    description: 'Returns a list of all products and their details.',
     inputSchema: {
       type: 'object',
       description: 'No input is required for this function.',
@@ -35,7 +35,7 @@ export const taskFunctions = [
         query: { type: 'string' },
       }
     },
-    func: getAllProducts,
+    func: getProducts,
   },
   {
     name: 'createNewOrder',

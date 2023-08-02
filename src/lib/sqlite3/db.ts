@@ -137,7 +137,7 @@ async function searchProducts(search: {query: string}): Promise<Product[]> {
   });
 }
 
-async function getAllProducts(query: string): Promise<Product[]> {
+async function getProducts(): Promise<Product[]> {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT * FROM Products';
     console.log('Getting a list of products')
@@ -175,6 +175,6 @@ export {
   getOrdersByCustomerId, 
   getOrderById, 
   searchProducts,
-  getAllProducts,
+  getProducts,
   createNewOrder
 };

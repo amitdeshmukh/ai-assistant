@@ -14,9 +14,7 @@ export const messagePromptText = `
   `;
 
 export const taskPromptText = `
-  Answer the user's question. 
-  Provide product details when the question is about products. 
-  Provide order details when the question is about orders.
+  Answer the user's question as best as you can.
   IMPORTANT! Before placing an order for a product, please 
     1. Check the product stock and price.
     2. Inform the user of the price.

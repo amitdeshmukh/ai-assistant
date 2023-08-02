@@ -12,6 +12,7 @@ const debugStatus: boolean = DEBUG === 'true' ? true : false;
 // const mem: Memory = new Memory();
 const conf = OpenAIDefaultOptions();
 conf.model = OpenAIGenerateModel.GPT35Turbo16K;
+conf.temperature = 0;
 
 const ai: OpenAI = new OpenAI(OPENAI_APIKEY!, conf);
 
@@ -31,32 +32,6 @@ const assistantPrompt: AssistantPrompt = new AssistantPrompt();
 const taskPrompt: SPrompt<Result> = new SPrompt(taskResultSchema, taskFunctions);
 taskPrompt.setDebug(debugStatus);
 
-const aiMessageResponse = async (messages: any) => {
-  // Only use the last 7 messages
-  messages = messages.slice(-7);
-  let chatHistory = await getChatHistory(messages);
-  let currPrompt = messagePromptText + chatHistory;
-
-  try {
-    const response = await messagePrompt.generate(ai, currPrompt);
-    let messageResponse = response.value();
-    console.log(messageResponse)
-
-    // If the response is not a task, generate an assistant response
-    if (!messageResponse.isTask) {
-      const assistantResponse = await assistantPrompt.generate(ai, chatHistory);
-      return { content: assistantResponse.value() };
-    }
-
-    const taskResponse = await aiTaskResponse(chatHistory);
-    return taskResponse;
-  }
-  catch (err: any) {
-    console.log(err.message);
-    return err.message;
-  }
-}
-
 const aiTaskResponse = async (chatHistory: string) => {
   let currPrompt = taskPromptText + '\n' + chatHistory;
 
@@ -67,6 +42,34 @@ const aiTaskResponse = async (chatHistory: string) => {
   } catch (err: any) {
     console.log(err.message);
     return err.message;  
+  }
+}
+
+const aiMessageResponse = async (messages: any) => {
+  // Only use the last 7 messages
+  messages = messages.slice(-7);
+  let chatHistory = await getChatHistory(messages);
+  let currPrompt = messagePromptText + chatHistory;
+
+  try {
+    // Check if the response is a task or not
+    const response = await messagePrompt.generate(ai, currPrompt);
+    let messageResponse = response.value();
+    console.log(messageResponse)
+
+    // If the response is not a task, generate an assistant response
+    if (!messageResponse.isTask) {
+      const assistantResponse = await assistantPrompt.generate(ai, chatHistory);
+      return { content: assistantResponse.value() };
+    }
+
+    // If the response is a task, generate a task response
+    const taskResponse = await aiTaskResponse(chatHistory);
+    return taskResponse;
+  }
+  catch (err: any) {
+    console.log(err.message);
+    return err.message;
   }
 }
 
