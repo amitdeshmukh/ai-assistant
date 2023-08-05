@@ -25,11 +25,11 @@
 </script>
 
 <div
-	class="h-[700px] w-[350px] bg-black bg-opacity-20 rounded-md py-4 px-2 overflow-y-auto flex flex-col gap-2"
+	class="h-[700px] w-[350px] bg-white bg-opacity-20 rounded-md py-4 px-2 overflow-y-auto flex flex-col gap-2"
 >
 	<button
 		on:click={chatMessages.reset}
-		class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20"
+		class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-black cursor-pointer text-sm mb-2 flex-shrink-0 border border-black/20"
 	>
 		<Plus /> New chat
 	</button>
@@ -39,18 +39,18 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
 				on:click={() => loadMessages(message)}
-				class="flex py-3 px-3 items-center gap-3 relative rounded-md cursor-pointer break-all pr-14 bg-opacity-40 hover:bg-white/5  bg-black  group animate-flash text-sm"
+				class="flex py-3 px-3 items-center gap-3 relative rounded-md cursor-pointer break-all pr-14 bg-opacity-40 hover:bg-black/5 bg-white group animate-flash text-sm text-black"
 			>
 				<Chat />
 				<div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">{message}</div>
 
-				<div class="absolute flex right-1 z-10 text-gray-300 visible">
-					<button on:click={() => loadMessages(message)} class="p-1 hover:text-white">
+				<div class="absolute flex right-1 z-10 text-black-300 visible">
+					<button on:click={() => loadMessages(message)} class="p-1 hover:text-black">
 						<Pencil />
 					</button>
 					<button
 						on:click|preventDefault={() => filterHistory(message)}
-						class="p-1 hover:text-white"
+						class="p-1 hover:text-black"
 					>
 						<Trash />
 					</button>

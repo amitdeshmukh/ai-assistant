@@ -19,7 +19,7 @@
     {placeholder}
     use:typeAction
     bind:value
-    class="shadow bg-white/10 rounded-md px-4 py-1.5 min-w-xl text-teal-300 border border-transparent focus:outline-none focus:ring-1 focus:ring-teal-300 focus:border-transparent"
+    class="shadow bg-white/10 rounded-md px-4 py-1.5 min-w-xl text-black border border-transparent focus:outline-none focus:ring-1 focus:ring-black-300 focus:border-transparent"
     {...$$restProps}
   />
 </div>

@@ -13,9 +13,9 @@
   let scrollToDiv: HTMLDivElement;
 
   const classSet = {
-    user: 'justify-end text-white-700',
-    assistant: 'justify-start text-teal-400',
-    system: 'justify-center text-gray-400'
+    user: 'justify-end text-black',
+    assistant: 'justify-start text-black',
+    system: 'justify-center text-black'
   };
 
   const typeEffect = (node: HTMLDivElement, message: string) => {
@@ -38,7 +38,7 @@
 <div class="flex {classSet[type]}">
   <div
     use:typeEffect={message}
-    class="bg-black py-0.5 px-4 max-w-2xl rounded leading-loose {classes} {classSet[type]}"
+    class="bg-white py-0.5 px-4 max-w-2xl rounded leading-loose {classes} {classSet[type]}"
   >
     {@html DOMPurify.sanitize(marked.parse(message))}
   </div>

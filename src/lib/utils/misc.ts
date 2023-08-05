@@ -1,6 +1,6 @@
-async function askQuestion(question: string) {
+async function askQuestion(question: {question: string}) {
   return new Promise((resolve, reject) => {
-    resolve('The final answer is: ' + JSON.stringify({ content: question }));
+    resolve(JSON.stringify({ content: question }));
   });
 }
 
