@@ -1,4 +1,5 @@
 import { getOrderById, getOrdersByCustomerId, getProducts, createNewOrder } from '$lib/sqlite3/db';
+import { propertyForRent } from '$lib/utils/bayut';
 
 export const taskFunctions = [
   {
@@ -27,7 +28,7 @@ export const taskFunctions = [
   },
   {
     name: 'getProducts',
-    description: 'Returns a list of all products and their details.',
+    description: 'Returns a list of all products with product name, description, price and stock availability.',
     inputSchema: {
       type: 'object',
       description: 'No input is required for this function.',
@@ -53,4 +54,40 @@ export const taskFunctions = [
     },
     func: createNewOrder,
   }
+  // {
+  //   name: 'askQuestion',
+  //   description: 'Ask a question to or clarify something from the user.',
+  //   inputSchema: {
+  //     type: 'object',
+  //     description: 'The question or clarification to ask the user',
+  //     properties: {
+  //       question: { type: 'string' },
+  //     },
+  //     required: ['question'],
+  //   },
+  //   func: askQuestion,
+  // }
+  // {
+  //   name: 'propertyForRent',
+  //   description: 'Returns a list of properties for rent based on provided parameters.',
+  //   inputSchema: {
+  //     type: 'object',
+  //     description: 'Optional parameters for property search.',
+  //     properties: {
+  //       priceMin: { type: 'number' },
+  //       priceMax: { type: 'number' },
+  //       areaMin: { type: 'number' },
+  //       areaMax: { type: 'number' },
+  //       roomsMin: { type: 'number' },
+  //       roomsMax: { type: 'number' },
+  //       bathsMin: { type: 'number' },
+  //       bathsMax: { type: 'number' },
+  //       furnishingStatus: { type: 'string' },
+  //       hasVideo: { type: 'boolean' },
+  //       hasFloorPlan: { type: 'boolean' },
+  //       hasPanorama: { type: 'boolean' }
+  //     }
+  //   },
+  //   func: propertyForRent,
+  // }
 ];

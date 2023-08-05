@@ -20,7 +20,7 @@
 
   <div class="flex flex-col w-full px-8 items-center gap-2">
     <div
-      class="h-[700px] w-full bg-black bg-opacity-20 rounded-md p-4 overflow-y-auto flex flex-col gap-4"
+      class="h-[700px] w-full bg-white bg-opacity-20 rounded-md p-4 overflow-y-auto flex flex-col gap-4"
     >
       <div class="flex flex-col gap-2">
         {#each $chatMessages.messages as message}
@@ -33,13 +33,13 @@
       </div>
     </div>
     <form
-      class="flex w-full rounded-md gap-4 bg-black bg-opacity-20 p-2"
+      class="flex w-full rounded-md gap-4 bg-white bg-opacity-20 p-2"
       on:submit|preventDefault={handleSubmit}
     >
       <Input type="text" bind:value={query} class="w-full" />
       <button
         type="submit"
-        class="bg-black bg-opacity-40 hover:bg-white/5 px-8 py-1.5 border border-black/40 ml-[-0.5rem] rounded-md text-teal-300"
+        class="bg-white bg-opacity-40 hover:bg-white/5 px-8 py-1.5 border border-black/40 ml-[-0.5rem] rounded-md text-black"
       >
         Send
       </button>

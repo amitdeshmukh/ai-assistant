@@ -24,7 +24,7 @@ interface isTask {
 }
 
 const messagePrompt: SPrompt<isTask> = new SPrompt(messageResultSchema, []);
-messagePrompt.setDebug(debugStatus);
+// messagePrompt.setDebug(debugStatus);
 
 const assistantPrompt: AssistantPrompt = new AssistantPrompt();
 // assistantPrompt.setDebug(debugStatus);

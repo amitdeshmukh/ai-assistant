@@ -1,5 +1,3 @@
-import { taskFunctions } from './functions';
-
 export const messagePromptText = `
   You have received a message chat history with a user.
   Your task is to determine if the next response to the user requires a database lookup or not.
@@ -15,7 +13,10 @@ export const messagePromptText = `
 
 export const taskPromptText = `
   Answer the user's question as best as you can.
-  IMPORTANT! Before placing an order for a product, please 
+  DO NOT create your own functions. Use the functions that are already provided.
+
+  IMPORTANT! If the user wants to buy a product, before placing an order, please 
+  follow these steps:
     1. Check the product stock and price.
     2. Inform the user of the price.
     3. Confirm from the user the quantity that they wish to purchase
