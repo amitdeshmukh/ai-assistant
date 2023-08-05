@@ -12,16 +12,16 @@ export const messagePromptText = `
   `;
 
 export const taskPromptText = `
-  Answer the user's question as best as you can.
+  Answer the user's question as best as you can. 
   DO NOT create your own functions. Use the functions that are already provided.
-
-  IMPORTANT! If the user wants to buy a product, before placing an order, please 
-  follow these steps:
-    1. Check the product stock and price.
-    2. Inform the user of the price.
-    3. Confirm from the user the quantity that they wish to purchase
-    4. Confirm from the user that they want to go ahead and place the order through you.
-  DO NOT place an order if any of the above steps are not completed.
   
   Here is the conversation so far:
   `;
+
+    // IMPORTANT! If the user wants to buy a product, before placing an order, please 
+  // follow these steps:
+  //   1. Check the product stock and price.
+  //   2. Inform the user of the price.
+  //   3. Confirm from the user the quantity that they wish to purchase
+  //   4. Confirm from the user that they want to go ahead and place the order through you.
+  // DO NOT place an order if any of the above steps are not completed.
