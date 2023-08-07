@@ -1,5 +1,6 @@
 import { getOrderById, getOrdersByCustomerId, getProducts, createNewOrder } from '$lib/sqlite3/db';
 import { propertyForRent } from '$lib/utils/bayut';
+import { checkUnreadEmails } from '$lib/gmail';
 
 export const taskFunctions = [
   {
@@ -53,41 +54,39 @@ export const taskFunctions = [
       required: ['customerId', 'productId', 'quantity', 'unitPrice']
     },
     func: createNewOrder,
+  },
+  {
+    name: 'checkUnreadEmails',
+    description: 'Check for unread emails in the inbox.',
+    inputSchema: {
+      type: 'object',
+      description: 'No input is required for this function.',
+      properties: {
+      }
+    },
+    func: checkUnreadEmails,
+  },
+  {
+    name: 'propertyForRent',
+    description: 'Returns a list of properties for rent based on provided parameters.',
+    inputSchema: {
+      type: 'object',
+      description: 'Optional parameters for property search.',
+      properties: {
+        priceMin: { type: 'number', description: 'Minimum price in AED' },
+        priceMax: { type: 'number', description: 'Maximum price in AED' },
+        areaMin: { type: 'number', description: 'Minimum area in sqft' },
+        areaMax: { type: 'number', description: 'Maximum area in sqft' },
+        roomsMin: { type: 'number', description: 'Minimum number of rooms' },
+        roomsMax: { type: 'number', description: 'Maximum number of rooms' },
+        bathsMin: { type: 'number', description: 'Minimum number of bathrooms' },
+        bathsMax: { type: 'number', description: 'Maximum number of bathrooms' },
+        furnishingStatus: { type: 'string', description: 'Furnished status of the property' },
+        hasVideo: { type: 'boolean', description: 'Whether the property has a video' },
+        hasFloorPlan: { type: 'boolean', description: 'Whether the property has a floor plan' },
+        hasPanorama: { type: 'boolean', description: 'Whether the property has a nice view' },
+      }
+    },
+    func: propertyForRent,
   }
-  // {
-  //   name: 'askQuestion',
-  //   description: 'Ask a question to or clarify something from the user.',
-  //   inputSchema: {
-  //     type: 'object',
-  //     description: 'The question or clarification to ask the user',
-  //     properties: {
-  //       question: { type: 'string' },
-  //     },
-  //     required: ['question'],
-  //   },
-  //   func: askQuestion,
-  // }
-  // {
-  //   name: 'propertyForRent',
-  //   description: 'Returns a list of properties for rent based on provided parameters.',
-  //   inputSchema: {
-  //     type: 'object',
-  //     description: 'Optional parameters for property search.',
-  //     properties: {
-  //       priceMin: { type: 'number' },
-  //       priceMax: { type: 'number' },
-  //       areaMin: { type: 'number' },
-  //       areaMax: { type: 'number' },
-  //       roomsMin: { type: 'number' },
-  //       roomsMax: { type: 'number' },
-  //       bathsMin: { type: 'number' },
-  //       bathsMax: { type: 'number' },
-  //       furnishingStatus: { type: 'string' },
-  //       hasVideo: { type: 'boolean' },
-  //       hasFloorPlan: { type: 'boolean' },
-  //       hasPanorama: { type: 'boolean' }
-  //     }
-  //   },
-  //   func: propertyForRent,
-  // }
 ];

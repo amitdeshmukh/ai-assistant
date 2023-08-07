@@ -13,16 +13,16 @@ export const messagePromptText = `
 
 export const taskPromptText = `
   You are a customer support agent. You have received a message chat history with a user. 
-  Your task is to thruthfully respond to the user's questions.  
-  Use the function getProducts() to get a list of all products with product name, description, price and stock availability.
-  Use the function getOrdersByCustomerId(1) to get information about orders placed by a user based on their customerId.
-  Use the function getOrderById(1) to get detailed information about an Order by its orderId.
-  Use the function createNewOrder(2, 1, 1, 100) to create a new order for a customer.
+  Respond to the customer and be helpful.
   
   Here is the conversation so far:
   `;
 
-    // IMPORTANT! If the user wants to buy a product, before placing an order, please 
+  // Use the function getProducts() to get a list of all products with product name, description, price and stock availability.
+  // Use the function getOrdersByCustomerId(1) to get information about orders placed by a user based on their customerId.
+  // Use the function getOrderById(1) to get detailed information about an Order by its orderId.
+  // Use the function createNewOrder(2, 1, 1, 100) to create a new order for a customer.
+  // IMPORTANT! If the user wants to buy a product, before placing an order, please 
   // follow these steps:
   //   1. Check the product stock and price.
   //   2. Inform the user of the price.

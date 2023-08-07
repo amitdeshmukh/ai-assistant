@@ -1,9 +1,3 @@
-async function askQuestion(question: {question: string}) {
-  return new Promise((resolve, reject) => {
-    resolve(JSON.stringify({ content: question }));
-  });
-}
-
 function getChatHistory(chatArray: Array<any>) {
   let chatHistory = '';
 
@@ -14,4 +8,4 @@ function getChatHistory(chatArray: Array<any>) {
   return chatHistory;
 }
 
-export { askQuestion, getChatHistory };
+export { getChatHistory };
