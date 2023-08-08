@@ -1,5 +1,5 @@
 import { getOrderById, getOrdersByCustomerId, getProducts, createNewOrder } from '$lib/sqlite3/db';
-import { propertyForRent } from '$lib/utils/bayut';
+import { propertyForRent } from '$lib/real-estate/bayut';
 import { checkUnreadEmails } from '$lib/gmail';
 
 export const taskFunctions = [
