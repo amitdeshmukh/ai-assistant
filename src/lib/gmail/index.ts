@@ -1,7 +1,7 @@
+import 'dotenv/config';
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI, GOOGLE_REFRESH_TOKEN } from '$env/static/private';
 import { google } from 'googleapis';
-import { config as dotenvConfig } from 'dotenv';
 import axios from 'axios';
-dotenvConfig();
 
 const generateConfig = (url: string, accessToken: string) => {
   return {
@@ -22,12 +22,12 @@ const mailoptions = {
 
 
 const oAuth2Client = new google.auth.OAuth2(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  process.env.GOOGLE_REDIRECT_URI
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+  GOOGLE_REDIRECT_URI
 );
 
-oAuth2Client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
+oAuth2Client.setCredentials({ refresh_token: GOOGLE_REFRESH_TOKEN });
 
 async function getUser(email: string) {
   try {

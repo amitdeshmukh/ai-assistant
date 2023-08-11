@@ -1,7 +1,7 @@
 // Use llm-client to generate a response
 import 'dotenv/config';
 import { OpenAI, SPrompt, AssistantPrompt, OpenAIGenerateModel, OpenAIDefaultOptions } from '@dosco/llm-client';
-import { OPENAI_APIKEY, DEBUG } from '$env/static/private';
+import { OPENAI_APIKEY, DEBUG, LLM_CLIENT_APIKEY } from '$env/static/private';
 import { messagePromptText, taskPromptText } from '$lib/llm-client/prompt';
 import { taskFunctions } from '$lib/llm-client/functions';
 import { messageResultSchema, taskResultSchema } from '$lib/llm-client/resultSchema';
@@ -9,10 +9,9 @@ import { getChatHistory } from '$lib/utils/misc';
 
 const debugStatus: boolean = DEBUG === 'true' ? true : false;
 
-// const mem: Memory = new Memory();
 const conf = OpenAIDefaultOptions();
-conf.model = OpenAIGenerateModel.GPT35Turbo16K;
-conf.temperature = 0;
+conf.model = OpenAIGenerateModel.GPT4;
+conf.temperature = 0.2;
 
 const ai: OpenAI = new OpenAI(OPENAI_APIKEY!, conf);
 
@@ -36,7 +35,9 @@ const aiTaskResponse = async (chatHistory: string) => {
   let currPrompt = taskPromptText + '\n' + chatHistory;
 
   try {
-    const response = await taskPrompt.generate(ai, currPrompt);
+    const response = await taskPrompt.generate(ai, currPrompt, {
+      apiKey: LLM_CLIENT_APIKEY!,
+    });
     let aiTaskResponse = response.value();
     return aiTaskResponse;
   } catch (err: any) {
