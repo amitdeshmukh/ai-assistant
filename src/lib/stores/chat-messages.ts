@@ -8,7 +8,7 @@ export interface ChatTranscript {
 
 const { subscribe, update, ...store } = writable<ChatTranscript>({
   messages: [
-    { role: 'assistant', content: 'Hello, I am your virtual assistant. How can I help you?' }
+    { role: 'assistant', content: 'Namaskar! How can I help you?' }
   ],
   chatState: 'idle'
 });

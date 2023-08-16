@@ -33,7 +33,7 @@ async function getUser(email: string) {
   try {
     const url = `https://gmail.googleapis.com/gmail/v1/users/${email}/profile`;
     const { token } = await oAuth2Client.getAccessToken();
-    const config = generateConfig(url, token);
+    const config = generateConfig(url, token as string);
     const response = await axios(config);
     return response.data;
   } catch (error) {
