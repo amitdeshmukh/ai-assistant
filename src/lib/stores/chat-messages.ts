@@ -8,7 +8,7 @@ export interface ChatTranscript {
 
 const { subscribe, update, ...store } = writable<ChatTranscript>({
   messages: [
-    { role: 'assistant', content: 'Namaskar! How can I help you?' }
+    { role: 'assistant', content: 'Namaskar! I am here to assist with inquiries about Amit Deshmukh. How can I help you?' }
   ],
   chatState: 'idle'
 });

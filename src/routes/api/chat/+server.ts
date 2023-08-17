@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { Config } from '@sveltejs/adapter-vercel';
 import { aiMessageResponse } from '$lib/llm-client/ai';
 import { generateTextFromUserMessage } from '$lib/openai';
-import herboticsInfo from '../brands/herbotics';
+import resume from '../brands/AmitDeshmukh';
 
 export const config: Config = {
   runtime: 'edge'
@@ -24,8 +24,8 @@ export const POST: any = async ({ request }) => {
     if (latestMessage && latestMessage.role === 'user') {
       
       // Forward chat history to the AI
-      let result: any = await aiMessageResponse(requestData.messages)
-      // let result: any = await generateTextFromUserMessage(requestData.messages, herboticsInfo)
+      // let result: any = await aiMessageResponse(requestData.messages)
+      let result: any = await generateTextFromUserMessage(requestData.messages, resume)
       console.log({role: "assistant", content: result.content})
 
       // Return a response to the user
