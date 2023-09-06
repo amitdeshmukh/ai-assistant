@@ -1,8 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { Config } from '@sveltejs/adapter-vercel';
-import { aiMessageResponse } from '$lib/llm-client/ai';
-import { generateTextFromUserMessage } from '$lib/openai';
-import resume from '../brands/AmitDeshmukh';
+import { getApiResponse } from '$lib/inference-api';
 
 export const config: Config = {
   runtime: 'edge'
@@ -23,13 +21,12 @@ export const POST: any = async ({ request }) => {
     // Do something with the request data
     if (latestMessage && latestMessage.role === 'user') {
       
-      // Forward chat history to the AI
-      // let result: any = await aiMessageResponse(requestData.messages)
-      let result: any = await generateTextFromUserMessage(requestData.messages, resume)
-      console.log({role: "assistant", content: result.content})
+      // Forward chat history to the API
+      let result: any = await getApiResponse(requestData.messages)
 
       // Return a response to the user
-      if (result.content) {
+      if (result && result.content) {
+        console.log({role: "assistant", content: result.content})
         return new Response(JSON.stringify({ role: 'assistant', content: result.content }), {
           headers: {
             'Content-Type': 'application/json'
@@ -49,6 +46,6 @@ export const POST: any = async ({ request }) => {
   } 
   catch (err) {
     console.error(err);
-    return json({ error: 'There was an error processing your request' }, { status: 500 });
+    return json({ error: 'There was an error processing your request' }, {status: 500});
   }
 };

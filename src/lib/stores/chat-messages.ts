@@ -8,7 +8,7 @@ export interface ChatTranscript {
 
 const { subscribe, update, ...store } = writable<ChatTranscript>({
   messages: [
-    { role: 'assistant', content: 'Namaskar! I am here to assist with inquiries about Amit Deshmukh. How can I help you?' }
+    { role: 'assistant', content: 'Hi! I am here to assist with inquiries about candidates. How can I help you?' }
   ],
   chatState: 'idle'
 });
@@ -64,3 +64,4 @@ const handleError = <T>(err: T) => {
 
 export const chatMessages = { subscribe, set, update, reset, replace };
 export const answer = writable<string>('');
+export const clientId = writable<string>('');

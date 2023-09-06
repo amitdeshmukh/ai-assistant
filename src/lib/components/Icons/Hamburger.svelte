@@ -1,14 +1,12 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  width="3em"
-  height="3em"
->
-  <line x1="3" y1="12" x2="21" y2="12" />
-  <line x1="3" y1="6" x2="21" y2="6" />
-  <line x1="3" y1="18" x2="21" y2="18" />
+<svg width="30" height="30" viewBox="0 0 30 30">
+  <rect width="30" height="4"/>
+  <rect y="13" width="30" height="4"/>
+  <rect y="26" width="30" height="4"/>
 </svg>
+
+<style>
+  /* Add any component styles here */
+  svg {
+    fill: lightslategray;
+  }
+</style>
