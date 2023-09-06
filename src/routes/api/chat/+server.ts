@@ -6,7 +6,7 @@ export const config: Config = {
   runtime: 'edge'
 };
 
-export const POST: any = async ({ request }) => {
+export const POST: any = async ({ request }: any) => {
 
   // Read the request body which contains the entire chat transcript
   const requestData = await request.json();
