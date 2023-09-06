@@ -1,7 +1,6 @@
 import axios from 'axios';
-import 'dotenv/config';
 import type { ChatCompletionRequestMessage } from 'openai';
-import { AI_SERVER_URL } from '$env/static/private';
+import { PUBLIC_AI_SERVER_URL } from '$env/static/public';
 
 // returns the response to the users message
 export async function getApiResponse(messageHistory: ChatCompletionRequestMessage[]): Promise<string | null> {
@@ -17,7 +16,7 @@ export async function getApiResponse(messageHistory: ChatCompletionRequestMessag
   };
 
   try {
-    const response = await axios.post(`${AI_SERVER_URL}/chat`, data, { headers });
+    const response = await axios.post(`${PUBLIC_AI_SERVER_URL}/chat`, data, { headers });
 
     // Check if the response status code is valid
     if (response.data.status.code >= 400) {
